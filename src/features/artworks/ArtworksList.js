@@ -1,5 +1,6 @@
 import { useGetAllArtworksQuery } from "./apiSlice";
 import { useState } from "react";
+import ArtworkCard from "./ArtworkCard";
 
 export default function ArtworksList() {
   const { data, isLoading, isError } = useGetAllArtworksQuery();
@@ -26,7 +27,7 @@ export default function ArtworksList() {
       <h1>Artworks</h1>
       <ul>
         {data.data.slice(0, isVisible).map((artwork) => (
-          <h2 key={artwork.id}>{artwork.title}</h2>
+          <ArtworkCard key={artwork.id} artwork={artwork} />
         ))}
       </ul>
       <button onClick={showLessArtworks} disabled={isVisible <= 3}>
